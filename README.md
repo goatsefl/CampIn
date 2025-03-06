@@ -1,10 +1,27 @@
 # CampIn
+
 A place where people can search, create and make a camp and set their price.
-## This app will have it's own documentation, it will be a bit different than others, wherein, the documentation will follow a specific technology usage before implementing inside the webapp.
-### Mostly probably, it will be specific to Indian geography, if not, under development the country might change to America if the required data is not found.
-</br>
-</br>
-`models` consists of model Schema, `camp.js`.</br>
-`seeds` Consists of three files called `cities.js`,`index.js` and `places.js`.</br>
-`seeds` directory is used to get literal raw data which is used in `index.js`, the data has been formatted and stored in the database under the collections camp-in which can be viewed in `index.js`</br>
-### Confusion can be created with `index.js` and `index.ejs`. Please be careful at looking over the extensions, reliance on template can be problematic sometimes.
+
+## Documentation Approach
+
+This app will have its own documentation, which will be a bit different from others.  The documentation will follow a specific technology usage *before* implementing it within the web app.
+
+### Geographic Focus (Under Development)
+
+Initially, the app is being developed with a focus on Indian geography. However, this might change to America if the required data for India is not readily available.
+
+## File Structure Overview
+
+* **`models` directory:**
+    * Contains the model schema in `camp.js`.
+* **`seeds` directory:**
+    * Consists of three files: `cities.js`, `index.js`, and `places.js`.
+    * `cities.js` and `places.js` contain literal raw data.
+    * `index.js` is used to:
+        * Read and format the raw data from `cities.js` and `places.js`.
+        * Seed the data into the database under the "camp-in" collection.
+        * (You can view the seeding process within `index.js`).
+
+### Important Note: `index.js` vs. `index.ejs`
+
+Be careful to distinguish between `index.js` (JavaScript file) and `index.ejs` (EJS template file). Confusion can arise due to similar names, especially when working with both server-side logic and templating.  Pay close attention to file extensions, as relying on the wrong file type can lead to problems.
