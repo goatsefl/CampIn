@@ -5,7 +5,7 @@ A place where people can search, create and make a camp.
 </br>
 </br>
 </br>
-`models` consists of model Schema, `camp.js`__
-`seeds` Consists of three files called `cities.js`,`index.js` and `places.js`__
-`seeds` directory is used to get literal raw data which is used in index.js, the data has been formatted and stored in the database under the collections camp-in which can be viewed in `index.js__
-### Confusion can be created with `index.js` and `index.ejs`. Please be careful at looking over the extensions, reliance on template is more compared to the other projects.
+`models` consists of model Schema, `camp.js`</br>
+`seeds` Consists of three files called `cities.js`,`index.js` and `places.js`</br>
+`seeds` directory is used to get literal raw data which is used in `index.js`, the data has been formatted and stored in the database under the collections camp-in which can be viewed in `index.js`</br>
+### Confusion can be created with `index.js` and `index.ejs`. Please be careful at looking over the extensions, reliance on template can be problematic sometimes.
