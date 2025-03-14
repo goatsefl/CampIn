@@ -16,13 +16,21 @@ db.once('open', () => {
 const app = express();
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
-
+app.use(express.urlencoded({ extended: true }))
 app.get('/', (req, res) => {
     res.render('home')
 })
 app.get('/campers', async (req, res) => {
     const camps = await campIn.find({})
     res.render('campIn/index', { camps })
+})
+app.get('/campers/new', async (req, res) => {
+    res.render('campIn/new');
+})
+app.post('/campers', async (req, res) => {
+    const camper = new campIn(req.body.camper);
+    await camper.save();
+    res.redirect(`/campers/${camper._id}`);
 })
 app.get('/campers/:id', async (req, res) => {
     const camper = await campIn.findById(req.params.id)
