@@ -24,7 +24,7 @@ Initially, the app is being developed with a focus on Indian geography. However,
 * **`views` directory:**
   * Contains the template views.
   * There can be subfolders under `views` directory where specific templating is provided for specially addressed components.
-* **`app.js`:
+* **`app.js`:**
   * Contains the middle ware for all the routes using `express` for complete usage of `renders` and `redirects` to different `.ejs` files.
 ### Important Note: `index.js` vs. `index.ejs`
 
