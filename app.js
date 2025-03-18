@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose')
 const path = require('path')
 const campIn = require('./models/camp')
+const methodOverride = require('method-override');
+const app = express();
 // campIn is the model, and the model is present in the models directory, specifically camp.js on the above one.
 mongoose.connect('mongodb://localhost:27017/camp-in')
 
@@ -13,10 +15,16 @@ db.on('error', console.error.bind(console, "connection error: "));
 db.once('open', () => {
     console.log("Database Connected")
 })
-const app = express();
+
+
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
+
+
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'));
+
+
 app.get('/', (req, res) => {
     res.render('home')
 })
@@ -35,6 +43,11 @@ app.post('/campers', async (req, res) => {
 app.get('/campers/:id', async (req, res) => {
     const camper = await campIn.findById(req.params.id)
     res.render('campIn/show', { camper })
+})
+app.get('/campers/:id/edit', async (req, res) => {
+    const { id } = req.params;
+    const camper = await campIn.findById(id);
+    res.render('/campIn/edit', camper)
 })
 app.listen(3000, () => {
     console.log("Listening on Port 3000!");
