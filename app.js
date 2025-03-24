@@ -4,6 +4,11 @@ const path = require('path')
 const campIn = require('./models/camp')
 const methodOverride = require('method-override');
 const app = express();
+// The express.Router creates a router object which will act as a organize for our requests as they become bundled up.
+// Eg : router.route("/:id").get(async()).post(async()).put(async()).delete(async())
+
+// This way, it will make the routes cleaner and simpler to manage.
+const router = express.Router();
 // campIn is the model, and the model is present in the models directory, specifically camp.js on the above one.
 mongoose.connect('mongodb://localhost:27017/camp-in')
 
@@ -16,7 +21,6 @@ db.once('open', () => {
     console.log("Database Connected")
 })
 
-
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 
@@ -24,30 +28,43 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'));
 
-
-app.get('/', (req, res) => {
-    res.render('home')
-})
-app.get('/campers', async (req, res) => {
-    const camps = await campIn.find({})
-    res.render('campIn/index', { camps })
-})
+// app.route can also be used to functionally curate different routes, if the app isn't complex enough.
+app.route('/')
+    .get((req, res) => {
+        res.render('home')
+    })
+app.route('/campers')
+    .get(async (req, res) => {
+        const camps = await campIn.find({})
+        res.render('campIn/index', { camps })
+    })
+    .post(async (req, res) => {
+        const camper = new campIn(req.body.camper);
+        await camper.save();
+        res.redirect(`/campers/${camper._id}`)
+    });
 app.get('/campers/new', async (req, res) => {
     res.render('campIn/new');
 })
-app.post('/campers', async (req, res) => {
-    const camper = new campIn(req.body.camper);
-    await camper.save();
-    res.redirect(`/campers/${camper._id}`);
-})
-app.get('/campers/:id', async (req, res) => {
-    const camper = await campIn.findById(req.params.id)
-    res.render('campIn/show', { camper })
-})
+app.route('/campers/:id')
+    .get(async (req, res) => {
+        const camper = await campIn.findById(req.params.id)
+        res.render('campIn/show', { camper })
+    })
+    .put(async (req, res) => {
+        console.log(req.body.camper);
+        const camper = await campIn.findByIdAndUpdate(req.params.id, req.body.camper)
+        res.redirect(`/campers/${camper._id}`)
+    })
+    .delete(async (req, res) => {
+        await campIn.findByIdAndDelete(req.params.id);
+        res.redirect('/campers');
+    })
+
 app.get('/campers/:id/edit', async (req, res) => {
     const { id } = req.params;
     const camper = await campIn.findById(id);
-    res.render('/campIn/edit', camper)
+    res.render('campIn/edit', { camper })
 })
 app.listen(3000, () => {
     console.log("Listening on Port 3000!");

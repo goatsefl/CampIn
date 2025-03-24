@@ -8,6 +8,12 @@
 	<body>
 		<h1><%=camper.title%></h1>
 		<h3><%=camper.location%></h3>
+		<div>
+			<p><a href="/campers/<%=camper._id%>/edit">Edit</a></p>
+		</div>
+		<form action="/campers/<%=camper._id%>?_method=DELETE" method="POST">
+			<button>Delete</button>
+		</form>
 		<footer><a href="/campers">All CampIn's</a></footer>
 	</body>
 </html>
