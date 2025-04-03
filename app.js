@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const path = require('path')
 const campIn = require('./models/camp')
 const methodOverride = require('method-override');
+const info = require('./seeds/description');
 const app = express();
 // The express.Router creates a router object which will act as a organize for our requests as they become bundled up.
 // Eg : router.route("/:id").get(async()).post(async()).put(async()).delete(async())
@@ -11,7 +12,7 @@ const app = express();
 const router = express.Router();
 // campIn is the model, and the model is present in the models directory, specifically camp.js on the above one.
 mongoose.connect('mongodb://localhost:27017/camp-in')
-
+const ejsMate = require('ejs-mate');
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, "connection error: "));
 // This here is to check if any error occurs over the connection, it will notify the above message.
@@ -20,11 +21,20 @@ db.on('error', console.error.bind(console, "connection error: "));
 db.once('open', () => {
     console.log("Database Connected")
 })
+async function updateDescriptions(camps) {
+    const operations = camps.map((camp, index) => ({
+        updateOne: {
+            filter: { _id: camp._id },
+            update: { $set: { description: info[index] } }
+        }
+    }))
+    await campIn.bulkWrite(operations)
+}
 
+app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
-
-
+app.use('/images', express.static(path.join(__dirname, '/seeds/images')))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'));
 
@@ -35,7 +45,7 @@ app.route('/')
     })
 app.route('/campers')
     .get(async (req, res) => {
-        const camps = await campIn.find({})
+        const camps = await campIn.find({});
         res.render('campIn/index', { camps })
     })
     .post(async (req, res) => {

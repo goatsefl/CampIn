@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Show</title>
-	</head>
-	<body>
-		<h1><%=camper.title%></h1>
-		<h3><%=camper.location%></h3>
-		<div>
-			<p><a href="/campers/<%=camper._id%>/edit">Edit</a></p>
-		</div>
-		<form action="/campers/<%=camper._id%>?_method=DELETE" method="POST">
-			<button>Delete</button>
-		</form>
-		<footer><a href="/campers">All CampIn's</a></footer>
-	</body>
-</html>
+<% layout('layouts/boilerplate')%>
+<h1><%=camper.title%></h1>
+<h3><%=camper.location%></h3>
+<img src="<%=camper.image%>" />
+<p><%=camper.description%></p>
+<div>
+	<p><a href="/campers/<%=camper._id%>/edit">Edit</a></p>
+</div>
+<form action="/campers/<%=camper._id%>?_method=DELETE" method="POST">
+	<button>Delete</button>
+</form>
+<footer><a href="/campers">All CampIn's</a></footer>
+<% layout('layouts/boilerplate')%>

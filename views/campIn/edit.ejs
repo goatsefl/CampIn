@@ -1,35 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Edit CampIn</title>
-	</head>
-	<body>
-		<h2>Edit Camp</h2>
-		<form action="/campers/<%=camper.id%>?_method=PUT" method="POST">
-			<div>
-				<label for="title">Title</label>
-				<input
-					type="text"
-					id="title"
-					name="camper[title]"
-					value="<%=camper.title%>"
-				/>
-			</div>
-			<div>
-				<label for="location">Location</label>
-				<input
-					type="text"
-					id="location"
-					name="camper[location]"
-					value="<%= camper.location%>"
-				/>
-			</div>
-			<button>Edit Camp</button>
-		</form>
-		<div>
-			<a href="/campers/<%=camper.id%>">Go back</a>
-		</div>
-	</body>
-</html>
+<% layout('layouts/boilerplate')%>
+<h2>Edit Camp</h2>
+<form action="/campers/<%=camper.id%>?_method=PUT" method="POST">
+	<div>
+		<label for="title">Title</label>
+		<input
+			type="text"
+			id="title"
+			name="camper[title]"
+			value="<%=camper.title%>"
+		/>
+	</div>
+	<div>
+		<label for="location">Location</label>
+		<input
+			type="text"
+			id="location"
+			name="camper[location]"
+			value="<%= camper.location%>"
+		/>
+	</div>
+	<button>Edit Camp</button>
+</form>
+<div>
+	<a href="/campers/<%=camper.id%>">Go back</a>
+</div>
