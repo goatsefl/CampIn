@@ -30,11 +30,26 @@ Initially, the app is being developed with a focus on Indian geography. However,
 
 Be careful to distinguish between `index.js` (JavaScript file) and `index.ejs` (EJS template file). Confusion can arise due to similar names, especially when working with both server-side logic and templating.  Pay close attention to file extensions, as relying on the wrong file type can lead to problems.
 
-## Added : `description.js`,`images`,`ejs-mate`,`partials`,`layouts`
+### Project Structure Updates & Additions:
 
-#### `description.js`: It is under `seeds` directory, contains description data of the place and the location of each camp.
-#### `images` is a directory added for the use of static images to be used in express for the websites for faster loads.
-#### `layouts` is a sub-directory of views to partially store boilerplate html code to load main parts of the required html code using ejs, `layouts` directory contain `boilerplate.ejs`.
-#### `partials` is also a sub-directory of `views` to partially store parts of the html code as components to be attached in `index.ejs`.
-### `partials` contain `footer.ejs` and `navbar.ejs` to load them again in different parts of the campIn directory containing `edit.ejs` `index.ejs` `show.ejs` `new.ejs` respectively.
+Several new files and directories have been added to improve organization, data management, and templating efficiency:
 
+1.  **Seed Data (`seeds/description.js`):**
+    *   A new JavaScript file located in the `seeds` directory.
+    *   Contains seed data defining descriptions and locations for the campsite entries.
+
+2.  **Static Images (`images/`):**
+    *   A new top-level directory dedicated to storing static image assets.
+    *   These images will be served by Express to optimize website loading performance.
+
+3.  **EJS Layouts (`views/layouts/`):**
+    *   A new subdirectory within `views` specifically for layout templates.
+    *   Contains `boilerplate.ejs`, which holds the main reusable HTML structure (like `<html>`, `<head>`, `<body>` tags).
+    *   Utilizes the `ejs-mate` package to inject view-specific content into this boilerplate, reducing redundancy across pages.
+
+4.  **EJS Partials (`views/partials/`):**
+    *   Another new subdirectory within `views` designed for smaller, reusable HTML components.
+    *   Currently includes:
+        *   `footer.ejs`: The standard site footer.
+        *   `navbar.ejs`: The standard site navigation bar.
+    *   These partials are included in various EJS views (`index.ejs`, `edit.ejs`, `show.ejs`, `new.ejs`) within the `campIn` directory (or main views directory) to ensure consistency and ease of maintenance.
