@@ -1,5 +1,18 @@
-<footer class="footer bg-dark py-3 mt-auto">
+<!-- <footer class="footer bg-dark py-3 mt-auto">
 	<div class="container">
-		<span class="text-white">&copy;CampIn 2025</span>
+		<span class="text-white">&copy;CampIn <%= new Date().getFullYear() %></span>
+	</div>
+</footer> -->
+<!-- Neopop Footer -->
+<!-- Uses the same yellow as the navbar for consistency -->
+<!-- Thick top border, consistent background color -->
+<!-- mt-auto requires the parent container (likely in boilerplate.ejs) to be setup correctly, often using flexbox column layout -->
+<footer class="mt-auto bg-yellow-300 border-t-4 border-black py-4 font-sans">
+	<!-- Centered container matching the main content width -->
+	<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+		<!-- Styled text: Bold, black, uppercase -->
+		<span class="text-sm font-bold text-black uppercase tracking-wider">
+			© CampIn <%= new Date().getFullYear() %>
+		</span>
 	</div>
 </footer>

@@ -1,13 +1,94 @@
 <% layout('layouts/boilerplate')%>
-<h1><%=camper.title%></h1>
-<h3><%=camper.location%></h3>
-<img src="<%=camper.image%>" />
-<p><%=camper.description%></p>
-<div>
-	<p><a href="/campers/<%=camper._id%>/edit">Edit</a></p>
+<!-- Consistent background -->
+<div class="min-h-screen bg-white-100 py-10 px-4 sm:px-6 lg:px-8 font-sans">
+	<!-- Centered content area -->
+	<div class="max-w-3xl mx-auto">
+		<!-- Adjusted max-width for content -->
+
+		<!-- Neopop Card for the campground details -->
+		<div
+			class="bg-white rounded-xl border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] /* Hard shadow effect */ overflow-hidden"
+		>
+			<!-- Image Container with Neopop Styling -->
+			<div class="border-b-4 border-black">
+				<img
+					class="block w-full h-64 md:h-96 object-cover"
+					src="<%= camper.image %>"
+					alt="<%= camper.title %> landscape"
+				/>
+				<!-- Optional: Add shadow directly to image if desired, but might conflict with container shadow visibility -->
+				<!-- class="... shadow-[4px_4px_0px_rgba(0,0,0,1)]" -->
+			</div>
+
+			<!-- Text Content Area -->
+			<div class="p-8 space-y-4 bg-lime-100">
+				<!-- Added space-y for vertical spacing -->
+
+				<!-- Title -->
+				<h1
+					class="text-3xl md:text-4xl font-extrabold text-black uppercase tracking-tight"
+				>
+					<%= camper.title %>
+				</h1>
+				<h3
+					class="text-2xl md:text-2xl font-extrabold text-black uppercase tracking-tight"
+				>
+					₹ <%=camper.price%>
+				</h3>
+				<!-- Location -->
+				<h3
+					class="text-lg font-bold text-black opacity-80 uppercase tracking-wider"
+				>
+					<%= camper.location %>
+				</h3>
+
+				<!-- Description -->
+				<p class="text-base text-black leading-relaxed">
+					<%= camper.description %>
+				</p>
+
+				<!-- Action Buttons Area -->
+				<div
+					class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 pt-6"
+				>
+					<!-- Edit Button (Neopop Secondary Style) -->
+					<a
+						href="/campers/<%= camper._id %>/edit"
+						class="inline-block px-6 py-2 border-2 border-black rounded-lg text-sm font-bold text-black uppercase tracking-wider bg-gray-200 hover:bg-gray-300 active:translate-x-[2px] active:translate-y-[2px] transition-all duration-100 ease-in-out"
+					>
+						Edit
+					</a>
+
+					<!-- Delete Form -->
+					<form
+						action="/campers/<%= camper._id %>?_method=DELETE"
+						method="POST"
+					>
+						<!-- Delete Button (Neopop Primary Style - Warning Color) -->
+						<button
+							type="submit"
+							class="inline-block px-6 py-2 border-2 border-black rounded-lg shadow-[4px_4px_0px_rgba(0,0,0,1)] text-sm font-bold text-black uppercase tracking-wider bg-red-500 hover:bg-red-600 /* Warning color */ active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all duration-100 ease-in-out"
+						>
+							Delete
+						</button>
+					</form>
+				</div>
+				<!-- End Action Buttons Area -->
+			</div>
+			<!-- End Text Content Area -->
+		</div>
+		<!-- End Neopop Card -->
+
+		<!-- Footer Link -->
+		<footer class="mt-8 text-center">
+			<a
+				href="/campers"
+				class="inline-block px-4 py-1 border-2 border-black rounded-full /* Pill shape maybe? */ text-xs font-bold text-black uppercase tracking-wider bg-yellow-300 hover:bg-yellow-400 transition-colors duration-100 ease-in-out"
+			>
+				Back to All Camps
+			</a>
+		</footer>
+	</div>
+	<!-- End Centered content area -->
 </div>
-<form action="/campers/<%=camper._id%>?_method=DELETE" method="POST">
-	<button>Delete</button>
-</form>
-<footer><a href="/campers">All CampIn's</a></footer>
-<% layout('layouts/boilerplate')%>
+<!-- End Outer Container --><% layout('layouts/boilerplate')%>

@@ -49,9 +49,10 @@ app.route('/campers')
         res.render('campIn/index', { camps })
     })
     .post(async (req, res) => {
-        const camper = new campIn(req.body.camper);
-        await camper.save();
-        res.redirect(`/campers/${camper._id}`)
+        console.log(req.body.camper)
+        const camp = new campIn(req.body.camper);
+        await camp.save();
+        res.redirect(`/campers/${camp._id}`)
     });
 app.get('/campers/new', async (req, res) => {
     res.render('campIn/new');

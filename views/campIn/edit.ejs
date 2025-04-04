@@ -1,26 +1,137 @@
 <% layout('layouts/boilerplate')%>
-<h2>Edit Camp</h2>
-<form action="/campers/<%=camper.id%>?_method=PUT" method="POST">
-	<div>
-		<label for="title">Title</label>
-		<input
-			type="text"
-			id="title"
-			name="camper[title]"
-			value="<%=camper.title%>"
-		/>
+<!-- Plain background to emphasize the form's style -->
+<div class="min-h-screen bg-yellow-50 py-10 px-4 sm:px-6 lg:px-8 font-sans">
+	<!-- Centered content area -->
+	<div class="max-w-lg mx-auto">
+		<!-- Form container with thick outline and hard shadow -->
+		<div
+			class="bg-white rounded-xl border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] /* Hard shadow effect */ overflow-hidden"
+		>
+			<!-- Form Content Area with Padding -->
+			<div class="p-8 bg-lime-100">
+				<h2 class="text-center text-3xl font-extrabold text-black mb-8">
+					EDIT CAMP!
+				</h2>
+
+				<form
+					action="/campers/<%=camper.id%>?_method=PUT"
+					method="POST"
+					class="space-y-7"
+				>
+					<!-- Title Field -->
+					<div>
+						<label
+							for="title"
+							class="block text-sm font-bold text-black mb-1 uppercase tracking-wide"
+						>
+							Title
+						</label>
+						<input
+							type="text"
+							id="title"
+							name="camper[title]"
+							value="<%=camper.title%>"
+							required
+							placeholder="Camp Name Here!"
+							class="block w-full px-4 py-2.5 border-2 border-black rounded-lg bg-white placeholder-gray-500 text-black font-medium focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-pink-500 focus:border-black /* Bright focus ring */ transition duration-100 ease-in-out"
+						/>
+					</div>
+
+					<!-- Location Field -->
+					<div>
+						<label
+							for="location"
+							class="block text-sm font-bold text-black mb-1 uppercase tracking-wide"
+						>
+							Location
+						</label>
+						<input
+							type="text"
+							id="location"
+							name="camper[location]"
+							value="<%= camper.location%>"
+							required
+							placeholder="Where's it at?!"
+							class="block w-full px-4 py-2.5 border-2 border-black rounded-lg bg-white placeholder-gray-500 text-black font-medium focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-lime-500 focus:border-black /* Bright focus ring */ transition duration-100 ease-in-out"
+						/>
+					</div>
+					<div>
+						<label
+							for="price"
+							class="block text-sm font-bold text-black mb-1 uppercase tracking-wide"
+						>
+							Price
+						</label>
+						<input
+							type="text"
+							id="price"
+							name="camper[price]"
+							value="<%= camper.price%>"
+							required
+							placeholder="Quote your price"
+							class="block w-full px-4 py-2.5 border-2 border-black rounded-lg bg-white placeholder-gray-500 text-black font-medium focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-lime-500 focus:border-black /* Bright focus ring */ transition duration-100 ease-in-out"
+						/>
+					</div>
+					<div>
+						<label
+							for="image"
+							class="block text-sm font-bold text-black mb-1 uppercase tracking-wide"
+						>
+							Image URL:
+						</label>
+						<input
+							type="text"
+							id="image"
+							name="camper[image]"
+							value="<%= camper.image%>"
+							required
+							placeholder="Show us your photography skills!"
+							class="block w-full px-4 py-2.5 border-2 border-black rounded-lg bg-white placeholder-gray-500 text-black font-medium focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-lime-500 focus:border-black /* Bright focus ring */ transition duration-100 ease-in-out"
+						/>
+					</div>
+					<div>
+						<label
+							for="description"
+							class="block text-sm font-bold text-black mb-1 uppercase tracking-wide"
+						>
+							Description
+						</label>
+						<textarea
+							type="text"
+							id="description"
+							name="camper[description]"
+							required
+							placeholder="Explain it!"
+							class="block w-full px-4 py-2.5 border-2 border-black rounded-lg bg-white placeholder-gray-500 text-black font-medium focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-lime-500 focus:border-black /* Bright focus ring */ transition duration-100 ease-in-out"
+						>
+<%=camper.description%></textarea
+						>
+					</div>
+
+					<!-- Button Row -->
+					<div class="flex items-center justify-between pt-8">
+						<!-- Back Button (Neopop Secondary) -->
+						<a
+							href="/campers/<%=camper.id%>"
+							class="inline-block px-6 py-2 border-2 border-black rounded-lg text-sm font-bold text-black uppercase tracking-wider bg-gray-200 hover:bg-gray-300 active:translate-x-[2px] active:translate-y-[2px] /* Simple press effect */ transition-all duration-100 ease-in-out"
+						>
+							Back
+						</a>
+
+						<!-- Edit/Submit Button (Neopop Primary) -->
+						<button
+							type="submit"
+							class="inline-block px-6 py-2 border-2 border-black rounded-lg shadow-[4px_4px_0px_rgba(0,0,0,1)] text-sm font-bold text-black uppercase tracking-wider bg-lime-400 hover:bg-lime-500 /* Bright color */ active:shadow-none active:translate-x-[2px] active:translate-y-[2px] /* Press effect */ transition-all duration-100 ease-in-out"
+						>
+							Save!
+						</button>
+					</div>
+				</form>
+			</div>
+			<!-- End Form Content Area -->
+		</div>
+		<!-- End Form Card -->
 	</div>
-	<div>
-		<label for="location">Location</label>
-		<input
-			type="text"
-			id="location"
-			name="camper[location]"
-			value="<%= camper.location%>"
-		/>
-	</div>
-	<button>Edit Camp</button>
-</form>
-<div>
-	<a href="/campers/<%=camper.id%>">Go back</a>
+	<!-- End Centered Content Area -->
 </div>
+<!-- End Outer Container -->
