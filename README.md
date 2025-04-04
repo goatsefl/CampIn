@@ -27,7 +27,7 @@ Initially, the app is being developed with a focus on Indian geography. However,
 * **`app.js`:**
   * Contains the middle ware for all the routes using `express` for complete usage of `renders` and `redirects` to different `.ejs` files.
 ### Important Note: `index.js` vs. `index.ejs`
-
+### UI Styling Changes: Commit message `Changed the framework from bootstrap to tailwind for higher granularity`.
 Be careful to distinguish between `index.js` (JavaScript file) and `index.ejs` (EJS template file). Confusion can arise due to similar names, especially when working with both server-side logic and templating.  Pay close attention to file extensions, as relying on the wrong file type can lead to problems.
 
 ### Project Structure Updates & Additions:
